@@ -1,0 +1,1 @@
+d:\mind\programs\Python34\python.exe d:\mind\programs\python_scripts\Backup\Backup.py %*

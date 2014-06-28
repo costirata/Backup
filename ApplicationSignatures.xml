@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications>
+    <signature name="admin">
+        <file ignore="true" type="generic">*CDR*</file>
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="asc">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="cdr">
+        <file ignore="true" type="generic">*cdr*</file>
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="dbimport">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="dbmanager">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="InAdaptor">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="LotFileDecoder">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="MINDJBoss">
+        <file ignore="true" type="log">*log*</file>
+		<file ignore="true" type="log">Export*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\default\*log*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\default\*tmp*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\default\*work*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\default\*data*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\all\*log*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\all\*tmp*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\all\*work*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\all\*data*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*log*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*tmp*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*work*</file>
+		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*data*</file>
+    </signature>
+	<signature name="paymentprocessor">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="provisioning">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="rts">
+        <file ignore="true" type="generic">*cdr*</file>
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="sysatt">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="udr">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="xmlapi">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="recalc">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="MindLibraries">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="Finance">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="ms">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="ts">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+	<signature name="GeneralLedger">
+        <file ignore="true" type="log">*log*</file>
+    </signature>
+</applications>
