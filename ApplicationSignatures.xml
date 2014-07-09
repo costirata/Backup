@@ -26,18 +26,10 @@
 	<signature name="MINDJBoss">
         <file ignore="true" type="log">*log*</file>
 		<file ignore="true" type="log">Export*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\default\*log*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\default\*tmp*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\default\*work*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\default\*data*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\all\*log*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\all\*tmp*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\all\*work*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\all\*data*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*log*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*tmp*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*work*</file>
-		<file ignore="true" type="log">thirdparty\jboss\server\minimal\*data*</file>
+		<file ignore="true" type="log">*log*</file>
+		<file ignore="true" type="log">*tmp*</file>
+		<file ignore="true" type="log">*work*</file>
+		<file ignore="true" type="log">*data*</file>
     </signature>
 	<signature name="paymentprocessor">
         <file ignore="true" type="log">*log*</file>

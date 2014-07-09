@@ -18,13 +18,13 @@ import xml.etree.ElementTree as ET
 import glob
 import argparse
 
-PROGRAM_DESCRIPTION="""
+PROGRAM_DESCRIPTION = """
 Backup the folder in which it is run based on the application description in ApplicationSignatures.xml
 The backup folder name will begin with a date formated as follows YYYY-MM-DD_HHMISS
 """
 APPLICATION_DIR = None
 CONFIGURATION_FILE = 'ApplicationSignatures.xml'
-BACKUP_DIR = r"d:\mindbkp\MINDBILL"
+BACKUP_DIR = os.path.join(os.path.dirname(os.getcwd()), 'mindbkp')
 XML_CONFIGURATION_TREE = None
 
 FILE_LOG_LEVEL = logging.DEBUG
@@ -61,7 +61,7 @@ def is_dir_in_configuration(directory_name, configuration_xml):
     return present
 
 
-def generate_ignore_list(directory_name, content_list):  # TODO: Use regular expressions here
+def generate_ignore_list(directory_name, content_list):
     """
     Generates the ignore list based on the current directory name and the list of files and folders inside it
     @param directory_name: The current working directory
@@ -77,7 +77,7 @@ def generate_ignore_list(directory_name, content_list):  # TODO: Use regular exp
     logger.debug(LOG_SEPARATING_STRING)
     ignored_list = []
     for folder in XML_CONFIGURATION_TREE.findall(xpath_folders):
-        xml_folder_path = os.path.join(APPLICATION_DIR, application_name, folder.text.lstrip(os.path.sep))
+        xml_folder_path = os.path.join(directory_name, folder.text.lstrip(os.path.sep))
         logger.debug('Folder in xml='+xml_folder_path)
         for fl in content_list:
             for xfl in glob.glob(xml_folder_path):
