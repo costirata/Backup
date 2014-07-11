@@ -1,2 +1,3 @@
 @SET PYTHON_HOME=d:\mind\programs\Python34\
-%PYTHON_HOME%\python Backup.py %*
+@SET SCRIPT_HOME=d:\mind\programs\python_scripts\
+%PYTHON_HOME%\python.exe %SCRIPT_HOME%\Backup.py %*
