@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications>
+    <signature name="admin">
+        <file ignore="true" type="generic">*CDR*</file>
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="asc">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="cdr">
+        <file ignore="true" type="generic">*cdr*</file>
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="dbimport">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="dbmanager">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+    <signature name="FileMapping">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+    <signature name="jbpm_utils">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="InAdaptor">
+        <file ignore="true" type="log">*.log*</file>
+        <file ignore="true" type="generic">log.pcap*</file>
+    </signature>
+	<signature name="LotFileDecoder">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="MINDJBoss">
+		<file ignore="true" type="log">Export*</file>
+		<file ignore="true" type="log">*.log*</file>
+		<file ignore="true" type="log">*tmp*</file>
+		<file ignore="true" type="log">*work*</file>
+		<file ignore="true" type="log">*data*</file>
+    </signature>
+	<signature name="paymentprocessor">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="provisioning">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="rts">
+        <file ignore="true" type="generic">*cdr*</file>
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="sysatt">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="udr">
+        <file ignore="true" type="log">*.log*</file>
+        <file ignore="true" type="generic">export</file>
+    </signature>
+	<signature name="xmlapi">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="recalc">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="MindLibraries">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="Finance">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="ms">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+	<signature name="ts">
+        <file ignore="true" type="log">*.log*</file>
+        <file ignore="true" type="generic">Crystal</file>
+        <file ignore="true" type="generic">GENERIC_IMPORT</file>
+        <file ignore="true" type="generic">ImportedFiles</file>
+    </signature>
+	<signature name="GeneralLedger">
+        <file ignore="true" type="log">*.log*</file>
+    </signature>
+</applications>
