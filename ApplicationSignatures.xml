@@ -38,7 +38,6 @@
 		<file ignore="true" type="log">*data*</file>
     </signature>
 	<signature name="paymentprocessor">
-<<<<<<< HEAD
         <file ignore="true" type="log">*.log*</file>
     </signature>
 	<signature name="provisioning">
