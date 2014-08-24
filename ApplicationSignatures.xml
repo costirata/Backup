@@ -8,7 +8,7 @@
         <file ignore="true" type="log">*.log*</file>
     </signature>
 	<signature name="cdr">
-        <file ignore="true" type="generic">*cdr*</file>
+        <file ignore="true" type="generic">cdr_src</file>
         <file ignore="true" type="log">*.log*</file>
     </signature>
 	<signature name="dbimport">

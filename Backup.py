@@ -30,6 +30,7 @@ XML_CONFIGURATION_TREE = None
 FILE_LOG_LEVEL = logging.DEBUG
 CONSOLE_LOG_LEVEL = logging.INFO
 LOG_SEPARATING_STRING = '*'*30
+#TODO: Clean up debug messages. We don't need all of them. We write too much log
 
 
 def get_working_backup_dir(backup_location, custom_name=''):
@@ -61,6 +62,28 @@ def is_dir_in_configuration(directory_name, configuration_xml):
     return present
 
 
+def return_match_in_xml(directory_name, content_list, xpath):
+    """
+    It matches files from content_list with the configuration specified by xpath
+    @param directory_name: The current working directory
+    @param content_list: The contents of the current directory
+    @return: The list of files/folders to be ignored
+    """
+    ignored_list = set()
+    for file in XML_CONFIGURATION_TREE.findall(xpath):
+        xml_file_path = os.path.join(directory_name, file.text.lstrip(os.path.sep))
+        logger.debug('File in xml='+xml_file_path)
+        expanded_xml_path = glob.glob(xml_file_path)
+        for fl in content_list:
+            for xfl in expanded_xml_path:
+                logger.debug('expanded '+str(xfl))
+                if os.path.samefile(os.path.join(directory_name, fl), xfl):
+                    logger.debug('Adding <%s> to ignored list', fl)
+                    ignored_list.add(fl)
+    logger.debug('The ignored list is '+str(ignored_list))
+    return ignored_list
+
+
 def generate_ignore_list(directory_name, content_list):
     """
     Generates the ignore list based on the current directory name and the list of files and folders inside it
@@ -75,16 +98,8 @@ def generate_ignore_list(directory_name, content_list):
     xpath_folders = r"./signature[@name='"+application_name+"']/file"
     logger.debug('xpath='+xpath_folders)
     logger.debug(LOG_SEPARATING_STRING)
-    ignored_list = []
-    for folder in XML_CONFIGURATION_TREE.findall(xpath_folders):
-        xml_folder_path = os.path.join(directory_name, folder.text.lstrip(os.path.sep))
-        logger.debug('Folder in xml='+xml_folder_path)
-        for fl in content_list:
-            for xfl in glob.glob(xml_folder_path):
-                if os.path.samefile(os.path.join(directory_name, fl), xfl):
-                    logger.debug('Adding <%s> to ignored list', fl)
-                    ignored_list.append(fl)
-    logger.debug('The ignored list is '+str(ignored_list))
+    ignored_list = set()
+    ignored_list = return_match_in_xml(directory_name, content_list, xpath_folders)
     return ignored_list
 
 
