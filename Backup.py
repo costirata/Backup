@@ -96,14 +96,27 @@ def generate_ignore_list(directory_name, content_list):
                  ' of application <' + application_name +
                  '> and content '+str(content_list))
     ignored_list = set()
+
     xpath_for_ignore = r"./general/file"
     logger.debug('xpath='+xpath_for_ignore)
     logger.debug('Doing the general match')
     ignored_list |= return_match_in_xml(directory_name, content_list, xpath_for_ignore)
+
+    xpath_for_exceptions = r"./general/file[@ignore='false']"
+    logger.debug('xpath='+xpath_for_ignore)
+    logger.debug('Doing the general exceptions')
+    ignored_list -= return_match_in_xml(directory_name, content_list, xpath_for_exceptions)
+
     xpath_for_ignore = r"./signature[@name='"+application_name+"']/file"
     logger.debug('Doing the particular match')
     ignored_list |= return_match_in_xml(directory_name, content_list, xpath_for_ignore)
     logger.debug('xpath='+xpath_for_ignore)
+
+    xpath_for_exceptions = r"./signature[@name='"+application_name+"']/file[@ignore='false']"
+    logger.debug('xpath='+xpath_for_ignore)
+    logger.debug('Doing the particular exceptions')
+    ignored_list -= return_match_in_xml(directory_name, content_list, xpath_for_exceptions)
+
     logger.debug(LOG_SEPARATING_STRING)
 
     return ignored_list
@@ -141,7 +154,7 @@ def read_xml_signature_file(file_path):
     """
     logger.info("Reading the xml file")
     logger.debug("the file path is "+str(file_path))
-    paths = [r"./signature/file"]
+    paths = [r".//file"]
 
     tree = ET.parse(file_path)
     logger.debug('OS path separator = '+str(os.path.sep))

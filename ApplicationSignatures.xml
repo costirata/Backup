@@ -2,6 +2,7 @@
 <applications>
     <general>
         <file ignore="true" type="log">*log*</file>
+        <file ignore="false" type="log">*log4j*</file>
     </general>
     <signature name="admin">
         <file ignore="true" type="generic">*CDR*</file>
