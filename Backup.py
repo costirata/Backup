@@ -8,7 +8,7 @@ CONFIGURATION_FILE: The name of the xml configuration file
 BACKUP_DIR: The directory where the backup will be stored
 """
 __author__ = 'Constantin Rata'
-__version__ = '1.02.00'
+__version__ = '1.03.00'
 import os
 import time
 import shutil
