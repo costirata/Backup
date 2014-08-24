@@ -95,11 +95,17 @@ def generate_ignore_list(directory_name, content_list):
     logger.debug('generate_ignore_list for directory_name ' + directory_name +
                  ' of application <' + application_name +
                  '> and content '+str(content_list))
-    xpath_folders = r"./signature[@name='"+application_name+"']/file"
-    logger.debug('xpath='+xpath_folders)
-    logger.debug(LOG_SEPARATING_STRING)
     ignored_list = set()
-    ignored_list = return_match_in_xml(directory_name, content_list, xpath_folders)
+    xpath_for_ignore = r"./general/file"
+    logger.debug('xpath='+xpath_for_ignore)
+    logger.debug('Doing the general match')
+    ignored_list |= return_match_in_xml(directory_name, content_list, xpath_for_ignore)
+    xpath_for_ignore = r"./signature[@name='"+application_name+"']/file"
+    logger.debug('Doing the particular match')
+    ignored_list |= return_match_in_xml(directory_name, content_list, xpath_for_ignore)
+    logger.debug('xpath='+xpath_for_ignore)
+    logger.debug(LOG_SEPARATING_STRING)
+
     return ignored_list
 
 
