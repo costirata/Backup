@@ -169,13 +169,15 @@ def read_xml_signature_file(file_path):
     return tree
 
 
-def process_args():
+def setup_args():
     parser = argparse.ArgumentParser(description=PROGRAM_DESCRIPTION, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-d", "--description",
                         help="Give a description to your backup."
                              "This will be appended to the name of the created backup folder")
     parser.add_argument("-b", "--backupdir",
                         help="The path of the folder where the backup will be stored")
+    parser.add_argument("-a", "--applist",
+                        help="The list of application from the current dir to be backed up", nargs='*')
     return parser
 
 
@@ -188,21 +190,31 @@ def setup_logging():
     console.setLevel(CONSOLE_LOG_LEVEL)
     formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
     console.setFormatter(formatter)
-    logger = logging.getLogger(os.path.basename(sys.argv[0]))
-    logger.addHandler(console)
+    __logger__ = logging.getLogger(os.path.basename(sys.argv[0]))
+    __logger__.addHandler(console)
+    return __logger__
 
-    return logger
+
+def validate_args(arguments):
+    arg_dict = {}
+    for argument in vars(arguments):
+        arg_dict[argument] = vars(arguments)[argument]
+    #process --applist
+    if arg_dict['applist'] is not None:
+        for app in arg_dict['applist'][:]:
+            if app not in os.listdir(os.getcwd()):
+                logger.warning('File <%s> is not a valid file/directory and it will not be backup', app)
+                arg_dict['applist'].remove(app)
+    return arg_dict
 
 if __name__ == '__main__':
     logger = setup_logging()
-    args = process_args().parse_args()
+    args = validate_args(setup_args().parse_args())
     APPLICATION_DIR = os.getcwd()
 
-    logger.warning('applist='+str(args.applist))
-
-    if args.backupdir:
-        if os.path.isdir(args.backupdir):
-            BACKUP_DIR = args.backupdir
+    if args['backupdir']:
+        if os.path.isdir(args['backupdir']):
+            BACKUP_DIR = args['backupdir']
             logger.info("Creating the backup in folder: "+BACKUP_DIR)
         else:
             logger.warning("The backup directory does not exist."
@@ -216,10 +228,12 @@ if __name__ == '__main__':
     except FileNotFoundError:
         XML_CONFIGURATION_TREE = read_xml_signature_file(os.path.join(os.path.dirname(sys.argv[0]), CONFIGURATION_FILE))
     logger.debug("After reading the xml file")
+    if len(args['applist']) == 0:
+        application_to_backup = os.listdir(APPLICATION_DIR)
+    else:
+        application_to_backup = args['applist']
 
-    application_to_backup = os.listdir(APPLICATION_DIR)
-
-    if args.description:
-        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR, args.description), application_to_backup)
+    if args['description']:
+        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR, args['description']), application_to_backup)
     else:
         do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR), application_to_backup)
