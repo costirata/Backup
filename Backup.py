@@ -168,18 +168,18 @@ def read_xml_signature_file(file_path):
             logger.debug("after "+str(node.text))
     return tree
 
-if __name__ == '__main__':
+
+def process_args():
     parser = argparse.ArgumentParser(description=PROGRAM_DESCRIPTION, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-d", "--description",
                         help="Give a description to your backup."
                              "This will be appended to the name of the created backup folder")
     parser.add_argument("-b", "--backupdir",
                         help="The path of the folder where the backup will be stored")
-    args = parser.parse_args()
+    return parser
 
-    APPLICATION_DIR = os.getcwd()
 
-    #setup logger
+def setup_logging():
     logging.basicConfig(format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         filename=os.path.basename(sys.argv[0])+'.log',
                         datefmt='%m-%d-%y %H:%M',
@@ -190,7 +190,16 @@ if __name__ == '__main__':
     console.setFormatter(formatter)
     logger = logging.getLogger(os.path.basename(sys.argv[0]))
     logger.addHandler(console)
-    #the logger is setup
+
+    return logger
+
+if __name__ == '__main__':
+    logger = setup_logging()
+    args = process_args().parse_args()
+    APPLICATION_DIR = os.getcwd()
+
+    logger.warning('applist='+str(args.applist))
+
     if args.backupdir:
         if os.path.isdir(args.backupdir):
             BACKUP_DIR = args.backupdir
