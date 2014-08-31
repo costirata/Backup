@@ -122,14 +122,16 @@ def generate_ignore_list(directory_name, content_list):
     return ignored_list
 
 
-def do_backup(application_installation_dir, backup_dir):
+def do_backup(application_installation_dir, backup_dir, files_to_backup):
     """
     Doe backup of all the mind application in the application_installation_dir based on CONFIGURATION_FILE
     @param application_installation_dir: This is a string representing the installation path of the mind applications
+    @backup_dir: The folder where to copy the backup
+    @files_to_backup: The list of files/folders to be backup.
     @return:
     """
     logger.info('Beginning to backup the directory ' + application_installation_dir)
-    for fl in os.listdir(application_installation_dir):
+    for fl in files_to_backup:
         if is_dir_in_configuration(fl, XML_CONFIGURATION_TREE):
             logger.info('Doing backup for <'+fl+'>')
             try:
@@ -206,7 +208,9 @@ if __name__ == '__main__':
         XML_CONFIGURATION_TREE = read_xml_signature_file(os.path.join(os.path.dirname(sys.argv[0]), CONFIGURATION_FILE))
     logger.debug("After reading the xml file")
 
+    application_to_backup = os.listdir(APPLICATION_DIR)
+
     if args.description:
-        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR, args.description))
+        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR, args.description), application_to_backup)
     else:
-        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR))
+        do_backup(APPLICATION_DIR, get_working_backup_dir(BACKUP_DIR), application_to_backup)
