@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <applications>
     <general>
-        <file ignore="true" type="log">*log*</file>
+        <file ignore="true" type="log">log*</file>
         <file ignore="false" type="log">*log4j*</file>
     </general>
     <signature name="admin">

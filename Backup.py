@@ -205,6 +205,8 @@ def validate_args(arguments):
             if app not in os.listdir(os.getcwd()):
                 logger.warning('File <%s> is not a valid file/directory and it will not be backup', app)
                 arg_dict['applist'].remove(app)
+    else:
+        arg_dict['applist'] = []
     return arg_dict
 
 if __name__ == '__main__':
